@@ -8,7 +8,7 @@ class LearnSpringFrameworkApplicationTests {
 
 	@Test
 	void contextLoads() {
-		//hello my youngmoo
+		
 	}
 
 }
