@@ -3,8 +3,10 @@ package com.in28minutes.learnspringframework.examples.c1;
 import java.util.Arrays;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+//@Component
+@Service //비즈니스 논리 정의
 public class BusinessCalculationService {
 	private DataService dataService;
 	

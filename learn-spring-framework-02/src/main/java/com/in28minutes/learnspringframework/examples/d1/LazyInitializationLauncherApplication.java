@@ -1,0 +1,24 @@
+package com.in28minutes.learnspringframework.examples.d1;
+
+import java.util.Arrays;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+
+@Configuration
+@ComponentScan //따로 패키지 위치 지정을 안할경우에는 현재 패키지를 componentscan
+public class LazyInitializationLauncherApplication {
+	
+	public static void main(String[] args) {
+		
+		try(var context = new AnnotationConfigApplicationContext(LazyInitializationLauncherApplication.class)) {
+			
+			Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
+		}
+	
+	}
+
+}
