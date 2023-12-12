@@ -15,9 +15,9 @@ public class TodoService {
 	
 	private static int todosCount = 0;
 	static {
-		todos.add(new Todo(++todosCount,"in28minutes","Get AWS certified", LocalDate.now().plusYears(1), false));
-		todos.add(new Todo(++todosCount,"in28minutes","Learn Devops", LocalDate.now().plusYears(2), false));
-		todos.add(new Todo(++todosCount,"in28minutes","Learn Full stack", LocalDate.now().plusYears(3), false));
+		todos.add(new Todo(++todosCount,"in28minutes","Get AWS certified 1", LocalDate.now().plusYears(1), false));
+		todos.add(new Todo(++todosCount,"in28minutes","Learn Devops 1", LocalDate.now().plusYears(2), false));
+		todos.add(new Todo(++todosCount,"in28minutes","Learn Full stack 1", LocalDate.now().plusYears(3), false));
 		
 		
 	}

@@ -4,9 +4,20 @@ import java.time.LocalDate;
 //Database (MySQL) 
 //Static List of todos => database(h2,mysql)
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
+//bean -> database table
+@Entity //(name ="TodoABC")
 public class Todo {
+	
+	public Todo() {
+		
+	}
+	
 	public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
 		super();
 		this.id = id;
@@ -15,7 +26,12 @@ public class Todo {
 		this.targetDate = targetDate;
 		this.done = done;
 	}
+	
+	@Id
+	@GeneratedValue
 	private int id;
+	
+	//@Column(name="name")
 	private String username;
 	
 	@Size(min=10, message="Enter atleast 10 characters")
