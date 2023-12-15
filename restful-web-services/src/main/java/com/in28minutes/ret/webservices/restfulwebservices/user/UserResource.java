@@ -1,6 +1,7 @@
 package com.in28minutes.ret.webservices.restfulwebservices.user;
 
 import java.net.URI;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,10 @@ public class UserResource {
 	//GET /users 특정id
 	@GetMapping("/users/{id}")
 	public User retrieveAllUsers1(@PathVariable int id) {
-		return service.findOne(id);
+		User user =  service.findOne(id);
+		if(user == null)
+			throw new UserNotFoundException("id:"+id);
+		return user;
 	}
 	
 	//POST /users 사용자 생성 
