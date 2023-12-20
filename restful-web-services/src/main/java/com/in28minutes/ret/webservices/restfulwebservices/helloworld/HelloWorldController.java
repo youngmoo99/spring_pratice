@@ -1,5 +1,9 @@
 package com.in28minutes.ret.webservices.restfulwebservices.helloworld;
 
+import java.util.Locale;
+
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +29,13 @@ public class HelloWorldController {
 	//6) 특정 사용자를 위해 게시물 생성 POST /users/{id}/posts 
 	
 	//7) 특정 게시물의 상세정보 검색 GET /users/{id}/posts/{post id} 
-
+	
+	private MessageSource messageSource;
+	
+	public HelloWorldController (MessageSource messageSource) {
+		this.messageSource = messageSource;
+	}
+	
 	//@RequestMapping(method = RequestMethod.GET, path = "/hello-world") //포트 8080 
 	@GetMapping(path = "/hello-world")
 	public String helloWorld() {
@@ -42,7 +52,15 @@ public class HelloWorldController {
 	@GetMapping(path = "/hello-world/path-variable/{name}")
 	public HelloWorldBean helloWorlPathVariable(@PathVariable String name) { //@PathVariable 파라미터 매개변수값 확인하기위해 사용
 		return new HelloWorldBean(String.format("Hello World, %s", name));
-				
-}
+			}
+	@GetMapping(path = "/hello-world-internationalized")
+	public String helloWorldInternationalized() {
+		
+		Locale locale = LocaleContextHolder.getLocale();
+		return messageSource.getMessage("good.morning.message", null, "Default Message", locale);
+		
+		//return "Hello World V2";
+	}
+	
 	
 }

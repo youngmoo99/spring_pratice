@@ -1,9 +1,12 @@
 package com.in28minutes.ret.webservices.restfulwebservices.user;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import java.net.URI;
 import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,14 +37,26 @@ public class UserResource {
 	public List<User> retrieveAllUsers() {
 		return service.findAll();
 	}
+	
+	//EntityModel
+	//WebMvcLinkBuilder
+	
 	//GET /users 특정id
 	@GetMapping("/users/{id}")
-	public User retrieveAllUsers1(@PathVariable int id) {
+	public EntityModel<User> retrieveAllUsers1(@PathVariable int id) {
 		User user =  service.findOne(id);
 		if(user == null)
 			throw new UserNotFoundException("id:"+id);
-		return user;
+		
+		EntityModel<User> entityModel = EntityModel.of(user);
+		
+		WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+		
+		entityModel.add(link.withRel("all-users"));
+		
+		return entityModel;
 	}
+
 	
 	@DeleteMapping("/users/{id}")
 	public void deleteUser(@PathVariable int id) {
