@@ -8,6 +8,7 @@ class LearnMavenApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }
